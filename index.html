@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<title>Shopping Cart</title>
+</head>
+<body>
+<h1>Shopping Cart</h1>
+<script>
+			let cart = [];
+
+			function Item(id, name, count) {
+				this.id = id
+				this.name = name
+				this.count = count
+			};
+			
+			function addItemToCart(id, name, count) {
+				for ( const i in cart) {
+					if (cart[i].name === name) {
+						cart[i].count += count;	
+						return;
+					}	
+				}
+				const item = new Item(id, name, count);
+				cart.push(item);
+			}
+			
+			function removeItemFromCart(name) {
+				for (const i in cart) {
+					if(cart[i].name === name) {
+						cart[i].count -- ;
+						if(cart[i].count === 0) {
+							cart.splice(i, 1);
+						}
+						return;
+					}
+				}
+			}
+			
+			function removeItemFromCartAll(name) {
+				for ( const i in cart) {
+					if ( cart[i].name === name) {
+						cart.splice(i, 1);
+						return;
+					}
+				}
+			}
+
+			addItemToCart(1,'Banana', 3);
+			addItemToCart(2,'Apple', 3);
+			addItemToCart(3,'Pear', 3);
+			addItemToCart(4,'Melone', 3);
+
+			console.log(cart.length);
+			console.log(cart);
+
+			function clearCart() {
+				cart = [];
+			}
+
+			// clearCart();
+			console.log(cart);
+
+			 function countCart() {
+			 	let totalCount = 0;
+				for (const i in cart) {
+					totalCount += cart[i].count;
+				}
+				return totalCount;
+			 }
+
+			 console.log(countCart());
+
+			function listCart() {
+				const cartList =  [];
+				for ( const i in cart) {
+					const item = cart[i];
+					const itemList = {};
+					for (const p in item) {
+						itemList[p] = item[p];
+					}
+					cartList.push(itemList);
+				}
+				return cartList;
+			}
+			console.log( listCart());
+			
+		</script>
+</body>
+</html>
+
+
+
+
+
+
